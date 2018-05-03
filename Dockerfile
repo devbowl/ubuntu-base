@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+  FROM ubuntu:16.04
 
 # Install general dependencies.
 RUN apt-get update && apt-get install -y \
@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     build-essential \
     sudo \
-    software-properties-common
+    software-properties-common \
+    acl
 
 # Install IDE server dependenices.
 # Set the DEBIAN_FRONTEND environment variable so tzdata doesn't prompt about location.
@@ -17,12 +18,18 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     php-mbstring \
     git
 
-# Install ttyd dependencies.
+# Install ttyd. 
 RUN add-apt-repository ppa:tsl0922/ttyd-dev
 RUN apt-get update && apt-get install -y \
     ttyd
 
-# Install dependencies for setup scripts.
+# Install markserv.
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get update && apt-get install -y \
+    nodejs
+RUN npm install -g markserv
+
+# Install setup scripts.
 RUN apt-get update && apt-get install -y \
     python3
 ADD https://bootstrap.pypa.io/get-pip.py .

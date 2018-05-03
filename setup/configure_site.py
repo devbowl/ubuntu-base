@@ -21,6 +21,7 @@ def render(tpl_path, context):
 if __name__ == '__main__':
     args, unknown = parser.parse_known_args()
     render('/etc/nginx/sites-available/site', {'base_url': args.base_url, 'port': args.port})
+
     render('/var/www/devbowl/index.html', {'project_name': args.project_name, 'username': args.username, 'return_url': args.return_url})
 
     # Find all folders projects and add them to the codiad data.

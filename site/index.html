@@ -20,6 +20,7 @@
     </a>
     <span class="navbar-text">Bowl: {{ project_name }} User: {{ username }}</span>
     <div id="control" class="ml-auto">
+      <button class="btn btn-outline-success" onclick="toggleDocs()">Toggle Docs</button>
       <button class="btn btn-outline-success" onclick="toggleEditor()">Toggle Editor</button>
       <button class="btn btn-outline-success" onclick="toggleTerminal()">Toggle Terminal</button>
       <a class="btn btn-outline-danger" href="{{ return_url }}" role="button">Leave</a>
@@ -27,8 +28,9 @@
   </div>
 
   <div id="ide">
-      <iframe id="editor" class="split split-horizontal" src="codiad/"></iframe>
-      <iframe id="terminal" class="split split-horizontal" src="ttyd/"></iframe>
+      <iframe id="docs" class="split split-horizontal" src="docs/index.md"></iframe>
+      <iframe id="editor" class="split split-horizontal" src="editor/"></iframe>
+      <iframe id="terminal" class="split split-horizontal" src="terminal/"></iframe>
   </div>
 
   <script src="https://unpkg.com/split.js/split.min.js"></script>

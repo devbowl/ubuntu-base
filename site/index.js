@@ -3,31 +3,42 @@ const editorOnlySizes = [100, 0];
 const bothSizes = [75, 25];
 const neitherSizes = [0, 0];
 
-var editorCollapsed = false;
-var terminalCollapsed = false;
+const sizeMap = {
+  "false,false,false" : [0, 0, 0],
+  "false,false,true" : [0, 0, 100],
+  "false,true,false" : [0, 100, 0],
+  "false,true,true" : [0, 75, 25],
+  "true,false,false" : [100, 0, 0],
+  "true,false,true" : [50, 0, 50],
+  "true,true,false" : [50, 50, 0],
+  "true,true,true" : [30, 50, 20],
+}
 
-var split = Split(['#editor', '#terminal'], {
-	sizes: bothSizes
+var docsVisible = true;
+var editorVisible = true;
+var terminalVisible = true;
+
+var split = Split(['#docs', '#editor', '#terminal'], {
+	sizes: sizeMap[[docsVisible, editorVisible, terminalVisible].toString()]
 });
 
 function toggleEditor() {
-	editorCollapsed = !editorCollapsed;
+	editorVisible = !editorVisible;
 	updateSplit();
 }
 
 function toggleTerminal() {
-	terminalCollapsed = !terminalCollapsed;
+	terminalVisible = !terminalVisible;
+	updateSplit();
+}
+
+function toggleDocs() {
+	docsVisible = !docsVisible;
 	updateSplit();
 }
 
 function updateSplit() {
-	if (terminalCollapsed && editorCollapsed) {
-		split.setSizes(neitherSizes);
-	} else if (terminalCollapsed && !editorCollapsed) {
-		split.setSizes(editorOnlySizes);
-	} else if (!terminalCollapsed && editorCollapsed) {
-		split.setSizes(terminalOnlySizes);
-	} else {
-		split.setSizes(bothSizes);
-	}
+	var sizes = sizeMap[[docsVisible, editorVisible, terminalVisible].toString()];
+	console.log(sizes);
+	split.setSizes(sizes);
 }

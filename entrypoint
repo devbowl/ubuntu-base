@@ -7,6 +7,9 @@ setfacl -d -m g:w /home/user/projects
 # Start ttyd.
 su - user -c 'ttyd -p 3000 bash' &
 
+# Start markserv.
+markserv /home/user/docs -p 5000 &
+
 # Configure the site.
 cd setup
 source venv/bin/activate
