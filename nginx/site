@@ -1,0 +1,54 @@
+server {
+
+    listen   {{ port }} default_server;
+    listen   [::]:{{ port }} default_server;
+
+    {% if base_url %}
+    location {{ base_url }} {
+        proxy_pass http://127.0.0.1:{{ port }}/;
+	proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+    {% endif %}
+
+    location / {
+        root /var/www/devbowl;
+	proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+
+    location /codiad/ {
+        proxy_pass http://127.0.0.1:420/;
+	proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+
+    location /ttyd/ {
+        proxy_pass http://127.0.0.1:3000/;
+	proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+}
+
+server {
+	listen   420 default_server;
+	listen   [::]:420 default_server;
+
+	root /var/www/html;
+	index index.php index.html;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to index.html
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ \.php$ {
+	        include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+	}
+}

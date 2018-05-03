@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Grant the user project access.
+chown user:project -R /home/user/projects
+setfacl -d -m g:w /home/user/projects
+
+# Start ttyd.
+su - user -c 'ttyd -p 3000 bash' &
+
+# Configure the site.
+cd setup
+source venv/bin/activate
+python3 configure_site.py "$@"
+deactivate
+
+# Launch the site.
+pip install -r requirements.txt
+service php7.0-fpm start
+service nginx start
+
+# Non-end command to keep running.
+tail -F /var/log/nginx/error.log
