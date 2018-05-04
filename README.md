@@ -4,7 +4,7 @@ An ubuntu base image for devbowl that sets up the IDE server.
 
 # Usage
 
-Use this image in for your container with this line in your Dockerfile:
+Add this line in your Dockerfile to use it.
 
 ```Dockerfile
 FROM neprune/ubuntu-base:latest
