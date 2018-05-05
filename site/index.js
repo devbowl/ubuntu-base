@@ -39,6 +39,5 @@ function toggleDocs() {
 
 function updateSplit() {
 	var sizes = sizeMap[[docsVisible, editorVisible, terminalVisible].toString()];
-	console.log(sizes);
 	split.setSizes(sizes);
 }
