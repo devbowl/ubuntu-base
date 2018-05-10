@@ -1,15 +1,10 @@
-const terminalOnlySizes = [0, 100];
-const editorOnlySizes = [100, 0];
-const bothSizes = [75, 25];
-const neitherSizes = [0, 0];
-
 const sizeMap = {
   "false,false,false" : [0, 0, 0],
   "false,false,true" : [0, 0, 100],
   "false,true,false" : [0, 100, 0],
-  "false,true,true" : [0, 75, 25],
+  "false,true,true" : [0, 75, 24], // <100 hack to stop the terminal overflowing.
   "true,false,false" : [100, 0, 0],
-  "true,false,true" : [50, 0, 50],
+  "true,false,true" : [50, 0, 49], // <100 hack to stop the terminal overflowing.
   "true,true,false" : [50, 50, 0],
   "true,true,true" : [30, 50, 20],
 }
