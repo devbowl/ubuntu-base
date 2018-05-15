@@ -7,8 +7,10 @@ setfacl -d -m g:w /home/user/projects
 # Start ttyd.
 su - user -c 'ttyd -p 3000 bash' &
 
-# Start markserv.
-markserv /home/user/docs -p 5000 &
+# Start mkdocs.
+cd /home/user/docs
+mkdocs serve -a 127.0.0.1:5000 &
+cd -
 
 # Configure the site.
 cd setup

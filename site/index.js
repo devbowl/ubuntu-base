@@ -1,6 +1,6 @@
 const sizeMap = {
   "false,false,false" : [0, 0, 0],
-  "false,false,true" : [0, 0, 100],
+  "false,false,true" : [0, 0, 97], // <100 hack to stop the terminal overflowing.
   "false,true,false" : [0, 100, 0],
   "false,true,true" : [0, 75, 24], // <100 hack to stop the terminal overflowing.
   "true,false,false" : [100, 0, 0],

@@ -23,12 +23,6 @@ RUN add-apt-repository ppa:tsl0922/ttyd-dev
 RUN apt-get update && apt-get install -y \
     ttyd
 
-# Install markserv.
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get update && apt-get install -y \
-    nodejs
-RUN npm install -g markserv
-
 # Install setup scripts.
 RUN apt-get update && apt-get install -y \
     python3
@@ -38,6 +32,14 @@ RUN pip install virtualenv
 COPY setup /setup
 RUN virtualenv setup/venv
 RUN /bin/bash -c "source /setup/venv/bin/activate && pip install -r /setup/requirements.txt"
+
+# Install mkdocs and theme.
+# NOTE: these envvars allow mkdocs to run on Python 3.
+# See http://click.pocoo.org/5/python3/ .
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+RUN pip install mkdocs
+RUN pip install mkdocs-bootstrap
 
 # Install nginx configuration.
 COPY nginx/site /etc/nginx/sites-available/site
@@ -77,6 +79,15 @@ COPY site /var/www/devbowl
 
 # Grant nginx permission to code.
 RUN chown www-data:www-data -R /var/www
+
+# Add placeholder docs.
+COPY docs /home/user/docs
+
+# Add placeholder project.
+COPY project /home/user/projects/project
+
+# Remove placeholders when used as base.
+ONBUILD RUN rm -rf /home/user/docs /home/user/projects/projectt
 
 # Script for starting services.
 COPY entrypoint entrypoint
