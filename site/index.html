@@ -23,6 +23,9 @@
       <button class="btn btn-outline-success" onclick="toggleDocs()">Toggle Docs</button>
       <button class="btn btn-outline-success" onclick="toggleEditor()">Toggle Editor</button>
       <button class="btn btn-outline-success" onclick="toggleTerminal()">Toggle Terminal</button>
+      {% if manage_url %}
+      <a class="btn btn-outline-warning" href="{{ manage_url }}">Manage</a>
+      {% endif %}
       <a class="btn btn-outline-danger" href="{{ return_url }}" role="button">Leave</a>
     </div>
   </div>

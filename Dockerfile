@@ -87,7 +87,7 @@ COPY docs /home/user/docs
 COPY project /home/user/projects/project
 
 # Remove placeholders when used as base.
-ONBUILD RUN rm -rf /home/user/docs /home/user/projects/projectt
+ONBUILD RUN rm -rf /home/user/docs /home/user/projects/project
 
 # Script for starting services.
 COPY entrypoint entrypoint
