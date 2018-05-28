@@ -7,7 +7,7 @@ An ubuntu base image for devbowl that sets up the IDE server.
 Add this line in your Dockerfile to use it.
 
 ```Dockerfile
-FROM neprune/ubuntu-base:latest
+FROM devbowl/ubuntu-base:latest
 ```
 
 To add a project to the code editor, place it's directory at `/home/user/projects`.
