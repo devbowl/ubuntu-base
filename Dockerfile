@@ -70,6 +70,8 @@ RUN echo 'user:password' | chpasswd
 # Add editor server to project group.
 RUN usermod -aG project www-data
 
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
 # Create the project directory.
 RUN mkdir /home/user/projects
 
@@ -78,10 +80,10 @@ RUN mkdir /var/www/devbowl
 COPY site /var/www/devbowl
 
 # Grant nginx permission to code.
-RUN chown www-data:www-data -R /var/www
+RUN chown user:user -R /var/www
 
 # Add placeholder docs.
-COPY docs /home/user/docs
+COPY docs /home/user/projects/docs
 
 # Add placeholder project.
 COPY project /home/user/projects/project

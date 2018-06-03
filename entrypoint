@@ -8,7 +8,7 @@ setfacl -d -m g:w /home/user/projects
 su - user -c 'ttyd -p 3000 bash' &
 
 # Start mkdocs.
-cd /home/user/docs
+cd /home/user/projects/docs
 mkdocs serve -a 127.0.0.1:5000 &
 cd -
 
@@ -17,6 +17,9 @@ cd setup
 source venv/bin/activate
 python3 configure_site.py "$@"
 deactivate
+
+# Hack PHP to let 'user' run nginx rather than 'www-data'.
+sed -i -e 's/www-data/user/' /etc/php/7.0/fpm/pool.d/www.conf
 
 # Launch the site.
 pip install -r requirements.txt
