@@ -1,17 +1,12 @@
-# Welcome to MkDocs
+# Welcome to your bowl!
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+This is your very own Linux environment.
 
-## Commands
+This is the documentation viewer.
+You'll also see a text editor and a terminal.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+Check out the [Bowl IDE reference](bowl_ide_reference.md) to get familiar with the bowl and to see some tips on how to edit this environment to your liking.
 
-## Project layout
+Otherwise have fun, explore and don't forget your password here is literally just 'password'.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Remember, if you're completely new to Linux, check out the Linux Basics recipe to gain some confidence with the terinal before you get started.

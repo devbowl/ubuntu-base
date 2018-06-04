@@ -1,2 +1,5 @@
 site_name: My Docs
 theme: bootstrap
+pages:
+ - Home: 'index.md'
+ - Bowl IDE Reference: 'bowl_ide_reference.md'
