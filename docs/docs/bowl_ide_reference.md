@@ -46,4 +46,5 @@ Some port numbers will be taken including:
 * 8080
 * 80
 * 3000
+* 6000
 * 8000

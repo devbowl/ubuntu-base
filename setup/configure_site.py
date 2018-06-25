@@ -4,8 +4,8 @@ import json
 import os
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--ip')
-parser.add_argument('--port')
+parser.add_argument('--ip', default='0.0.0.0')
+parser.add_argument('--port', default=80)
 parser.add_argument('--base_url')
 parser.add_argument('--token')
 parser.add_argument('--project_name')
@@ -14,7 +14,7 @@ parser.add_argument('--return_url')
 parser.add_argument('--manage_url')
 
 def render(tpl_path, context):
-    path, filename = os.path.split(tpl_path)
+    path, filename = os.path.split(tpl_path + '.tmpl')
     return jinja2.Environment(
         loader=jinja2.FileSystemLoader(path or './')
     ).get_template(filename).stream(context).dump(tpl_path)

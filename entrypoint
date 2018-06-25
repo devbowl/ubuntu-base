@@ -9,7 +9,7 @@ su - user -c 'ttyd -p 3000 bash' &
 
 # Start mkdocs.
 cd /home/user/projects/docs
-mkdocs serve -a 127.0.0.1:8000 &
+mkdocs serve -a 127.0.0.1:6000 &
 cd -
 
 # Configure the site.

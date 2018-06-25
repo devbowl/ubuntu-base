@@ -42,7 +42,8 @@ RUN pip install mkdocs
 RUN pip install mkdocs-bootstrap
 
 # Install nginx configuration.
-COPY nginx/site /etc/nginx/sites-available/site
+COPY nginx/site.tmpl /etc/nginx/sites-available/site.tmpl
+RUN touch /etc/nginx/sites-available/site
 RUN ln -s /etc/nginx/sites-available/site /etc/nginx/sites-enabled/site 
 RUN unlink /etc/nginx/sites-enabled/default 
 
@@ -54,7 +55,7 @@ RUN git clone -b 'v.2.8.4' --single-branch --depth 1 https://github.com/Codiad/C
 COPY codiad/auth.php /var/www/html/auth.php
 COPY codiad/config.php /var/www/html/config.php
 COPY codiad/users.php /var/www/html/data/users.php
-COPY codiad/projects.php /var/www/html/data/projects.php
+COPY codiad/projects.php.tmpl /var/www/html/data/projects.php.tmpl
 
 # NOTE: We want files created by the editor to be writable to the terminal and vice versa.
 # We place both users in a group and give the group access to all files in the project repo.
